@@ -1,4 +1,4 @@
-namespace PracticeThree;
+namespace UPB.PracticeThree;
 
 public class WeatherForecast
 {
