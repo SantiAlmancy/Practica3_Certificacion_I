@@ -1,3 +1,5 @@
+using UPB.PracticeThree.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
