@@ -120,4 +120,27 @@ public class PatientManager
         }
     }
 
+    // DElETE D
+
+    public Patient Delete(int ci)
+    {
+        if (ci < 0)
+        {
+            throw new Exception("INVALID CI");
+        }
+
+        List<Patient> patients = GetAll();
+
+        if (patients.Find(p => p.CI == ci) == null)
+        {
+            throw new Exception("Patient not found");
+        }
+        else
+        {
+            Patient patientToDelete = patients.Find(p => p.CI == ci);
+            patients.Remove(patientToDelete);
+            SavePatients(patients);
+            return patientToDelete;
+        }
+    }
 }
