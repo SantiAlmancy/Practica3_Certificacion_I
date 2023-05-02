@@ -11,6 +11,48 @@ public class PatientManager
         filePath = _filePath;
     }
 
+    //CREATE C
+    
+    public Patient Create(string name, string lastname, int ci)
+    {
+        if (ci < 0)
+        {
+            throw new Exception("INVALID CI");
+        }
+        // List of all blood groups
+        string[] bloodGroups = new string[] 
+        {"A-",
+        "A+",
+        "B+",
+        "B-",
+        "AB+",
+        "AB-",
+        "O+",
+        "O-"};
+
+        // Randomly choosing a blood group
+        Random rand = new Random();
+        int index = rand.Next(8);
+
+        Patient createdPatient = new Patient(name, lastname, bloodGroups[index], ci);
+        List<Patient> patients = GetAll();
+        patients.Add(createdPatient);
+        SavePatients(patients);
+        return createdPatient;
+    }
+
+    //  Save patient
+
+    public void SavePatients(List<Patient> patients)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(List<Patient>));
+
+        using (StreamWriter writer = new StreamWriter(filePath))
+        {
+            serializer.Serialize(writer, patients);
+        }
+    }
+
     // READ R
     // GET BY ID
 
