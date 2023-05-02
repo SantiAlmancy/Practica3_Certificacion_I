@@ -53,6 +53,7 @@ public class PatientManager
         }
     }
 
+
     // READ R
     // GET BY ID
 
@@ -90,4 +91,33 @@ public class PatientManager
             return (List<Patient>)serializer.Deserialize(reader);
         }
     }
+
+    // UPDATE U
+
+    public Patient Update(int ci, string name, string lastName)
+    {
+        if (ci < 0)
+        {
+            throw new Exception("INVALID CI");
+        }
+
+        List<Patient> patients = GetAll();
+
+        if (patients.Find(p => p.CI == ci) == null)
+        {
+            throw new Exception("Patient not found");
+        }
+        else
+        {
+            Patient patientToUpdate = patients.Find(p => p.CI == ci);
+
+            patientToUpdate.Name = name;
+            patientToUpdate.LastName = lastName;
+
+            SavePatients(patients);
+
+            return patientToUpdate;
+        }
+    }
+
 }
