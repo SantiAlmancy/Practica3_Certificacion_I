@@ -9,16 +9,20 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline. FOR LATER
+app.UseGlobalExceptionHandler();
+// app.UseHttpsRedirection();
+// app.UseStaticFiles();
+// app.UseRouting();
+// app.UseCors();
+// app.UseAuthentication();
+// app.UseAuthorization();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 
