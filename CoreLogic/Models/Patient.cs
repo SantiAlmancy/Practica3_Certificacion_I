@@ -7,6 +7,8 @@ public class Patient
     public String BloodGroup {get; set;}
     public int CI {get; set;}
     
+    public Patient() { }
+
     public Patient(String Name, String LastName, String BloodGroup, int CI)
     {
         this.Name = Name;
