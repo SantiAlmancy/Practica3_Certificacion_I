@@ -1,6 +1,9 @@
 using UPB.PracticeThree.Middlewares;
+using UPB.CoreLogic.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient<PatientManager>(sp => new PatientManager("C:\\Users\\PC\\Documents\\Certificacion I\\patients.xml"));
 
 // Add services to the container.
 
