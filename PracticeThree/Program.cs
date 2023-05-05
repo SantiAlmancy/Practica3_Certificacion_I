@@ -35,7 +35,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-builder.Services.AddTransient<PatientManager>(sp => new PatientManager("C:\\Users\\PC\\Documents\\Certificacion I\\patients.xml"));
+builder.Services.AddTransient<PatientManager>(sp => new PatientManager(Configuration.GetSection("Location").Value));
 
 var app = builder.Build();
 
