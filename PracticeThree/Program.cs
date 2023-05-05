@@ -1,10 +1,9 @@
 using UPB.PracticeThree.Middlewares;
 using UPB.CoreLogic.Managers;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddTransient<PatientManager>(sp => new PatientManager("C:\\Users\\PC\\Documents\\Certificacion I\\patients.xml"));
 
 // Add services to the container.
 
@@ -30,10 +29,18 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+Log.Logger = new LoggerConfiguration()
+        .ReadFrom.Configuration(Configuration)
+        .CreateLogger();
+
+builder.Host.UseSerilog();
+
+builder.Services.AddTransient<PatientManager>(sp => new PatientManager("C:\\Users\\PC\\Documents\\Certificacion I\\patients.xml"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline. FOR LATER
-app.UseGlobalExceptionHandler();
+app.UseGlobalExceptionHandler(Log.Logger);
 // app.UseHttpsRedirection();
 // app.UseStaticFiles();
 // app.UseRouting();
