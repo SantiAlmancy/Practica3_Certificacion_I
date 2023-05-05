@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,dotnetcore,windows,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,dotnetcore,windows,linux,macos
 
+## Log Files and Patient Files ###
+*.log
+*.xml
+
 ### DotnetCore ###
 # .NET Core build folders
 bin/
